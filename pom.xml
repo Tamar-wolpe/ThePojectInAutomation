@@ -5,16 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>lesson4_tsmmy_wolpe</artifactId>
+    <artifactId>btl-automation-project</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-<!--    https://gemini.google.com/app/9e0b951a0808887b-->
-
-
-
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -22,7 +18,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.38.0</version>
+            <version>4.16.1</version>
         </dependency>
 
         <dependency>
@@ -37,19 +33,5 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.6.3</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-api</artifactId>-->
-<!--            < version>6.0.0</version>-->
-<!--        <dependency/>-->
-
-<!--        <dependency>-->
-<!--             <groupId>org.junit.jupiter</groupId>-->
-<!--             <artifactId>junit-jupiter-engine</artifactId>-->
-<!--             <version>6.0.0</version>-->
-<!--        <dependency/>-->
-
     </dependencies>
-
 </project>

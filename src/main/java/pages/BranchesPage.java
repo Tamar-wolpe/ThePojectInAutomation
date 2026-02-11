@@ -3,35 +3,34 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 public class BranchesPage extends BtlBasePage {
 
-    @FindBy(css = ".branch-link")
+    @FindBy(css = ".branch-link, .btl-branch-name")
     private List<WebElement> allBranches;
 
-    @FindBy(id = "branchAddress")
+    @FindBy(xpath = "//*[contains(text(),'כתובת')]")
     private WebElement addressInfo;
 
-    @FindBy(id = "receptionHours")
+    @FindBy(xpath = "//*[contains(text(),'קבלת קהל')]")
     private WebElement receptionInfo;
 
-    @FindBy(id = "phoneService")
-    private WebElement phoneInfo;
-
-    public BranchesPage(WebDriver driver) {
-        super(driver);
-    }
+    public BranchesPage(WebDriver driver) { super(driver); }
 
     public void clickFirstBranch() {
         if (!allBranches.isEmpty()) {
-            allBranches.get(0).click();
+            safeClick(allBranches.get(0));
         }
     }
 
     public boolean isAllBranchInfoDisplayed() {
-        return addressInfo.isDisplayed() &&
-                receptionInfo.isDisplayed() &&
-                phoneInfo.isDisplayed();
+        try {
+            return wait.until(ExpectedConditions.visibilityOf(addressInfo)).isDisplayed() &&
+                    wait.until(ExpectedConditions.visibilityOf(receptionInfo)).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

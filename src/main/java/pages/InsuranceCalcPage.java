@@ -1,44 +1,56 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import java.util.Random;
 
 public class InsuranceCalcPage extends BtlBasePage {
 
-    @FindBy(id = "BirthDate")
+    @FindBy(xpath = "//input[contains(@id, 'BirthDate')]")
     private WebElement birthDateField;
 
-    @FindBy(id = "StudentType")
+    @FindBy(xpath = "//select[contains(@id, 'StudentType')]")
     private WebElement studentTypeSelect;
 
-    @FindBy(id = "IsDisabledNo")
+    @FindBy(xpath = "//label[contains(@for, 'IsDisabledNo')] | //input[contains(@id, 'IsDisabledNo')]")
     private WebElement disabledNoRadio;
 
-    @FindBy(id = "NextBtn")
+    @FindBy(xpath = "//*[contains(@id, 'NextBtn')]")
     private WebElement nextBtn;
 
     public InsuranceCalcPage(WebDriver driver) {
         super(driver);
     }
 
+    // הנה הפונקציה שחיפשת - תוודאי שהיא נמצאת כאן!
+    public void clickInsuranceCalculator() {
+        // אנחנו מחפשים קישור (a) שמכיל את המילה מחשבון בתוך הטקסט שלו
+        WebElement calcBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//a[contains(., 'מחשבונים')]")
+        ));
+
+        // לחיצה בטוחה באמצעות JavaScript
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", calcBtn);
+    }
+
     public void fillFirstStep(String date) {
+        wait.until(ExpectedConditions.visibilityOf(birthDateField));
+        birthDateField.clear();
         birthDateField.sendKeys(date);
-        Select select = new Select(studentTypeSelect);
+
+        WebElement dropdown = wait.until(ExpectedConditions.visibilityOf(studentTypeSelect));
+        Select select = new Select(dropdown);
         select.selectByVisibleText("תלמיד ישיבה");
-        nextBtn.click();
+
+        safeClick(nextBtn);
     }
 
     public void fillSecondStep() {
-        disabledNoRadio.click();
-        nextBtn.click();
-    }
-
-    public String generateRandomDate() {
-        // הגרלה בין 1954 ל-2006 (לפחות 18 שנה אחורה)
-        int year = new Random().nextInt(2006 - 1954 + 1) + 1954;
-        return "01/11/" + year;
+        safeClick(disabledNoRadio);
+        safeClick(nextBtn);
     }
 }
