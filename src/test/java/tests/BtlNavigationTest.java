@@ -22,29 +22,21 @@ public class BtlNavigationTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // 1. יצירת ה-DataProvider עם 5 דפים שונים מקצבאות והטבות
     @DataProvider(name = "benefitsPages")
     public Object[][] getPages() {
         return new Object[][]{
-                // עדכנתי את השמות שיופיעו בדיוק כמו באתר ואת ה-URLs לאותיות קטנות
                 {"אבטלה", "unemployment"},
-                {"אזרח ותיק", "old_age"}, // שונה מ'זיקנה' ל'אזרח ותיק'
+                {"אזרח ותיק", "old_age"},
                 {"ילדים", "children"},
                 {"נכות כללית", "disability"},
                 {"נפגעי עבודה", "work_injury"}
         };
     }
-    // 2. הטסט המרכזי שמשתמש בנתונים
     @Test(dataProvider = "benefitsPages")
     public void testBenefitsNavigation(String benefitName, String urlPart) {
         System.out.println("בודק ניווט לדף: " + benefitName);
-
         driver.get("https://www.btl.gov.il/Benefits/Pages/default.aspx");
-
-        // שימוש ב-partialLinkText כדי להיות גמישים יותר
         wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(benefitName))).click();
-
-        // הפיכת ה-URL לאותיות קטנות (toLowerCase) כדי שההשוואה תעבור תמיד
         String actualUrl = driver.getCurrentUrl().toLowerCase();
 
         Assert.assertTrue(actualUrl.contains(urlPart.toLowerCase()),

@@ -1,5 +1,4 @@
 package pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -26,14 +25,10 @@ public class InsuranceCalcPage extends BtlBasePage {
         super(driver);
     }
 
-    // הנה הפונקציה שחיפשת - תוודאי שהיא נמצאת כאן!
     public void clickInsuranceCalculator() {
-        // אנחנו מחפשים קישור (a) שמכיל את המילה מחשבון בתוך הטקסט שלו
         WebElement calcBtn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//a[contains(., 'מחשבונים')]")
         ));
-
-        // לחיצה בטוחה באמצעות JavaScript
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", calcBtn);
     }
 

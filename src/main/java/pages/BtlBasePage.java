@@ -8,7 +8,6 @@ public class BtlBasePage extends BasePage {
 
     public void selectSubMenu(String subMenuText) {
         try {
-            // המתנה דינמית במקום Thread.sleep
             String xpath = "//a[contains(text(),'" + subMenuText + "')] | //span[contains(text(),'" + subMenuText + "')]";
             WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
             safeClick(element);
@@ -24,7 +23,6 @@ public class BtlBasePage extends BasePage {
     }
 
     public void switchToNewWindow() {
-        // מחכה רגע שהחלון באמת ייפתח
         try { Thread.sleep(2000); } catch (InterruptedException e) {}
 
         String currentWindow = driver.getWindowHandle();

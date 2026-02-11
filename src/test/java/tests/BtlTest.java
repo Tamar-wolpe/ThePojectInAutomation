@@ -1,5 +1,4 @@
 package tests;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.*;
@@ -8,7 +7,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -31,28 +29,6 @@ public class BtlTest {
             driver.quit();
         }
     }
-
-//    @Test
-//    public void testInsuranceCalculator() {
-//        BtlHomePage home = new BtlHomePage(driver);
-//        home.selectFromMenu(MainMenu.INSURANCE_FEE);
-//        home.selectSubMenu("דמי ביטוח לאומי");
-//        home.selectSubMenu("מחשבון לחישוב דמי ביטוח");
-//
-//        home.switchToNewWindow(); // מעבר לחלון של המחשבון
-//
-//        InsuranceCalcPage calc = new InsuranceCalcPage(driver);
-//
-//        // עכשיו הקוד ילחץ על הכפתור הפנימי "מחשבון" בשיטה הבטוחה
-//        calc.clickInsuranceCalculator();
-//
-//        // מילוי הנתונים
-//        calc.fillFirstStep("01/01/2000");
-//        calc.fillSecondStep();
-//
-//        // בדיקה שהגענו לדף התוצאות
-//        Assert.assertTrue(driver.getPageSource().contains("תוצאות"), "החישוב לא הסתיים בהצלחה");
-//    }
 
     @Test
     public void testPartOneSearch() {
